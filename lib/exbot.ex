@@ -10,4 +10,8 @@ defmodule Exbot do
   def get_updates do
     request("getUpdates")
   end
+
+  def send_message(m) do
+    request("sendMessage", m)
+  end
 end

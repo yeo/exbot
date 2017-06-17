@@ -23,7 +23,6 @@ defmodule Exbot.Api do
     |> response(method)
   end
 
-
   def response(raw_response, method) do
     result = with({:ok, %HTTPoison.Response{body: body}} <- raw_response,
 									%{result: result} <- Poison.decode!(body, keys: :atoms),
