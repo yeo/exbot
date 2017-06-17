@@ -3,12 +3,18 @@ defmodule Exbot do
 
   def get_me, do: request("getMe")
 
-  def get_updates(f) do
-    request(f, "getUpdates")
-  end
+  @doc """
+  Get update
 
-  def get_updates do
-    request("getUpdates")
+  alias Exbot.Request.Update
+  Exbot.get_update(&(&1 |> Update.with_limit(100)))
+  """
+  def get_updates(f \\ nil) do
+    payload = [limit: 100]
+    case f do
+      nil -> request("getUpdates", [])
+      _ -> request("getUpdates", f.([]))
+    end
   end
 
   def send_message(m) do

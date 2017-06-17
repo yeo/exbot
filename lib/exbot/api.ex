@@ -1,13 +1,11 @@
 defmodule Exbot.Api do
+  alias Exbot.Response
+
   @base_url "https://api.telegram.org/bot"
-  def url(path, token \\ nil) do
-		case token do
-			nil ->
-				case Application.fetch_env(:exbot, "token") do
-					{:ok, token } -> @base_url <> token <> "/" <> path
-				end
-			_ -> @base_url <> token <> "/" <> path
-		end
+  def url(path) do
+    case Application.fetch_env(:exbot, "token") do
+      {:ok, token } -> @base_url <> token <> "/" <> path
+    end
   end
 
 	defp build_payload(params) do
@@ -24,9 +22,16 @@ defmodule Exbot.Api do
   end
 
   def response(raw_response, method) do
-    result = with({:ok, %HTTPoison.Response{body: body}} <- raw_response,
-									%{result: result} <- Poison.decode!(body, keys: :atoms),
-									do: result)
-		result
+    with({:ok, %HTTPoison.Response{body: body}} <- raw_response,
+        %{result: result} <- Poison.decode!(body, keys: :atoms),
+        do: decode(result, method))
+  end
+
+  defp decode(body, method) do
+    case method do
+      "getMe" -> Response.User.decode(body)
+      "sendMessage" -> Response.Message.decode(body)
+      "getUpdates" -> Response.Update.decode(body)
+    end
   end
 end
