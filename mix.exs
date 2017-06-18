@@ -34,13 +34,14 @@ defmodule Exbot.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [{:httpoison, "~> 0.9"},
-     {:poison, "~> 3.0"}]
+     {:poison, "~> 3.0"},
+		 {:ex_doc, ">= 0.0.0", only: :dev},]
   end
 
 	defp package do
     # These are the default files included in the package
     %{
-      files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
+      files: ["lib", "mix.exs", "README*",],
       maintainers: ["Vinh Nguyen"],
       licenses: ["Apache 2.0"],
       links: %{"GitHub" => "https://github.com/yeospace/exbot"}
