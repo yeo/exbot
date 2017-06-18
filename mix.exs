@@ -3,12 +3,14 @@ defmodule Exbot.Mixfile do
 
   def project do
     [app: :exbot,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.4",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       deps: deps(),
+			package: package(),
       name: "Exbot",
+    	description: "Telegram API",
       source_url: "https://github.com/yeospace/exbot",]
   end
 
@@ -35,20 +37,13 @@ defmodule Exbot.Mixfile do
      {:poison, "~> 3.0"}]
   end
 
-  defp description do
-    """
-    Telegram API
-    """
-  end
-
 	defp package do
     # These are the default files included in the package
-    [
-      name: :exbot,
+    %{
       files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
       maintainers: ["Vinh Nguyen"],
       licenses: ["Apache 2.0"],
       links: %{"GitHub" => "https://github.com/yeospace/exbot"}
-    ]
+    }
   end
 end
