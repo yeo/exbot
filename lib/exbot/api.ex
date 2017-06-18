@@ -3,7 +3,7 @@ defmodule Exbot.Api do
 
   @base_url "https://api.telegram.org/bot"
   def url(path) do
-    case Application.fetch_env(:exbot, "token") do
+    case Application.fetch_env(:exbot, :token) do
       {:ok, token } -> @base_url <> token <> "/" <> path
     end
   end
