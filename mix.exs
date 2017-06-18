@@ -7,7 +7,9 @@ defmodule Exbot.Mixfile do
       elixir: "~> 1.4",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      deps: deps()]
+      deps: deps(),
+      name: "Exbot",
+      source_url: "https://github.com/yeospace/exbot",]
   end
 
   # Configuration for the OTP application
@@ -31,5 +33,22 @@ defmodule Exbot.Mixfile do
   defp deps do
     [{:httpoison, "~> 0.9"},
      {:poison, "~> 3.0"}]
+  end
+
+  defp description do
+    """
+    Telegram API
+    """
+  end
+
+	defp package do
+    # These are the default files included in the package
+    [
+      name: :exbot,
+      files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
+      maintainers: ["Vinh Nguyen"],
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => "https://github.com/yeospace/exbot"}
+    ]
   end
 end
