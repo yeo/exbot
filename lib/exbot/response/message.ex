@@ -3,11 +3,11 @@ defmodule Exbot.Response.Message do
 
   def decode(response) do
     %Exbot.Response.Message{
-      message_id: response[:message][:message_id],
-      date:       response[:message][:date],
-      chat:       response[:message][:chat],
-      from:       Exbot.Response.User.decode(response[:message][:from]),
-      text:       response[:message][:text],
+      message_id: response[:message_id],
+      date:       response[:date],
+      chat:       response[:chat],
+      from:       Exbot.Response.User.decode(response[:from]),
+      text:       response[:text],
     }
   end
 end
