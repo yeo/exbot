@@ -17,6 +17,7 @@ defmodule Exbot do
     end
   end
 
+  #@spec 
   def send_message(m) do
     request("sendMessage", m)
   end
